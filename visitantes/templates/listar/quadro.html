@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block active444 %}
+ active
+{% endblock active444 %}
+{% block color444 %}
+text-white
+{% endblock color444 %}
+
+{% block title %}
+{% if quadro_de_honra %}
+<title>Quadro de Honra | LSNG - Chinguar</title>
+{% elif alunod %}
+<title>{{ alunod.nome_do_aluno }} | LSNG - Chinguar</title>
+{% endif %}
+{% endblock title %}
+
+{% block main %}
+{% if quadro_de_honra %}
+<section class="container py-lg-5">
+    <div class="row">
+          <div class="d-flex flex-column gap-5" data-cue="zoomIn" data-group="page-title" data-delay="700" data-show="true" style="animation-name: zoomIn; animation-duration: 600ms; animation-timing-function: ease; animation-delay: 200ms; animation-direction: normal; animation-fill-mode: both;">
+            <div class="shadow p-3 bg-body-white rounded">
+            <h1 align="left"><i class="bi bi-people-fill"></i> Quadro de Honra</h1><hr>
+            <div class="row justify-content-center text-center">
+              {% for alunod in quadro_de_honra %}
+              <div class="col-lg-3 card-lift">
+              <a href="{% url 'quadro_de_honra2' pk=alunod.id %}">
+                <img src="{{ alunod.img.url }}"  alt="Foto" class="bd-placeholder-img rounded-circle" width="130" height="130" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%"></rect></img>
+              <h6>{{ alunod.nome_do_aluno }}</h6>
+              <small style="font-size: x-small;">{{ alunod.classe }} - {{ alunod.curso.sigla }} - {{ alunod.referencia }} - {{ alunod.ano_lectivo }}</small>
+              <h4>{{ alunod.media_obtida }} Valores</h4>
+              </a>
+            </div>
+             {% endfor %}
+            </div>
+          </div>
+      </div>
+  </section>   
+{% elif alunod %}
+<section class="container py-lg-2" data-cue="fadeIn" data-show="true" style="animation-name: fadeIn; animation-duration: 600ms; animation-timing-function: ease; animation-delay: 0ms; animation-direction: normal; animation-fill-mode: both;">
+  <div class="row justify-content-center">
+     <div class="col-xl-8 col-lg-10 col-12" data-cues="zoomIn" data-group="page-title" data-delay="700" data-disabled="true">
+        <div class="text-center d-flex flex-column gap-5" data-cue="zoomIn" data-group="page-title" data-delay="700" data-show="true" style="animation-name: zoomIn; animation-duration: 600ms; animation-timing-function: ease; animation-delay: 700ms; animation-direction: normal; animation-fill-mode: both;">
+           <div class="d-flex flex-column gap-3 mx-lg-8">
+            <div class="col py-1" align="right">
+              <a class="btn btn1" href="{% url 'quadro_de_honra' %}">Voltar</a>
+            </div>
+              <img width="auto" height="auto" src="{{ alunod.img.url }}" class="rounded mx-auto d-block" alt="...">
+              <h5 class="mb-0 display-6">{{ alunod.nome_do_aluno }}</h5>
+              <small>{{ alunod.classe }} - {{ alunod.curso.sigla }} - {{ alunod.referencia }} - {{ alunod.ano_lectivo }}</small>
+              <h6>Idade {{ alunod.idade }} anos</h6>
+              <h4 style="color: brown;">Média {{ alunod.media_obtida }} Valores</h4>
+            </div>
+        </div>
+     </div>
+  </div>
+</section>
+<section class="container" data-cue="fadeIn" align="center">
+  <div class="row justify-content-center">
+  <div class="col-4" data-cue="zoomIn">
+    <div class="card bg-light card-lift">
+        <div class="card-body text-body">
+          <h3 class="mb-0">Descrição de Notas</h3>
+            <div class="py-1 d-flex align-items-center">
+                <pre>
+                  {{ alunod.desc_notas }}
+                </pre>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+</section>
+{% endif %}
+{% endblock main %}
+

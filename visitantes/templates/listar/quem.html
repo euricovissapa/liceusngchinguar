@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{% if direccao %}
+<title>Membros da Direcção| LSNG - Chinguar</title>
+{% else %}
+<title>Docentes | LSNG Chinguar</title>
+{% endif %}
+{% endblock title%}
+
+{% block active5 %}
+ active
+{% endblock active5 %}
+{% block color5 %}
+text-white
+{% endblock color5 %}
+
+{% block active55 %}
+ active
+{% endblock active55 %}
+{% block color55 %}
+text-white
+{% endblock color55 %}
+
+{% block main %}
+<section class="container py-lg-5">
+  <div class="row">
+        <div class="d-flex flex-column gap-5" data-cue="zoomIn" data-group="page-title" data-delay="700" data-show="true" style="animation-name: zoomIn; animation-duration: 600ms; animation-timing-function: ease; animation-delay: 200ms; animation-direction: normal; animation-fill-mode: both;">
+          <div class="shadow p-3 bg-body-white rounded">
+          {% if funcionarios %}
+            <h1 align="right">Corpo Directivo<i class="bi bi-person-lines-fill"></i></h1><hr>
+            <!-- Three columns of text below the carousel -->
+            <div class="row justify-content-center text-center">
+              {% for funcionario in funcionarios %}
+              {% if funcionario.funcao == 'Director' %}
+               <div class="col-lg-12" align="center" >
+                <div class="col-lg-3 card-lift">
+                  <a class="" href="{% url 'detalhes_funcionario' pk=funcionario.id disc=0 direccao=1%}">
+                  <img src="{{ funcionario.foto.url }}"  alt="Foto" class="bd-placeholder-img rounded-circle" width="130" height="130" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%"></rect></img>
+                <h6>{{ funcionario.nome_completo }}</h6>
+                <p>{{ funcionario.funcao }}</p>
+                </a>
+              </div>
+            </div>
+              {% elif funcionario.funcao == 'Subdirector Pedagógico' %}
+              <div class="col-lg-3 card-lift">
+                <a class="" href="{% url 'detalhes_funcionario' pk=funcionario.id disc=0 direccao=1 %}">
+                  <img src="{{ funcionario.foto.url }}"  alt="Foto" class="bd-placeholder-img rounded-circle" width="130" height="130" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%"></rect></img>
+                <h6>{{ funcionario.nome_completo }}</h6>
+                <p>{{ funcionario.funcao }}</p>
+                </a>
+              </div>
+              {% elif funcionario.funcao == 'Subdirector Administrativo' %}
+              <div class="col-lg-3 card-lift">
+                <a class="" href="{% url 'detalhes_funcionario' pk=funcionario.id disc=0 direccao=1 %}">
+                  <img src="{{ funcionario.foto.url }}"  alt="Foto" class="bd-placeholder-img rounded-circle" width="130" height="130" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%"></rect></img>
+                <h6>{{ funcionario.nome_completo }}</h6>
+                <p>{{ funcionario.funcao }}</p>
+                </a>
+              </div>
+              {% elif funcionario.funcao == 'Chefe da Secretaria Geral' %}
+              <div class="col-lg-3 card-lift">
+                <a class="" href="{% url 'detalhes_funcionario' pk=funcionario.id disc=0 direccao=1 %}">
+                  <img src="{{ funcionario.foto.url }}"  alt="Foto" class="bd-placeholder-img rounded-circle" width="130" height="130" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%"></rect></img>
+                <h6>{{ funcionario.nome_completo }}</h6>
+                <p>{{ funcionario.funcao }}</p>
+                </a>
+              </div>
+              {% elif funcionario.funcao == 'Chefe da Secretaria Pedagógica' %}
+               <div class="col-lg-3 card-lift">
+                <a class="" href="{% url 'detalhes_funcionario' pk=funcionario.id disc=0 direccao=1 %}">
+                  <img src="{{ funcionario.foto.url }}"  alt="Foto" class="bd-placeholder-img rounded-circle" width="130" height="130" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%"></rect></img>
+                <h6>{{ funcionario.nome_completo }}</h6>
+                <p>{{ funcionario.funcao }}</p>
+                </a>
+              </div>
+              {% endif %}
+              {% endfor %}
+              <h1 align="Left"><i class="bi bi-people-fill"></i> Coordenações</h1><hr>
+            <!-- Three columns of text below the carousel -->
+            <div class="row justify-content-center text-center">
+              {% for funcionario in funcionarios %}
+              {% if funcionario.funcao == 'Coordenador(a) do Curso' or  funcionario.funcao == 'Coordenador(a) de Disciplina' %}
+              <div class="col-lg-3 card-lift">
+              <a class="" href="{% url 'detalhes_funcionario' pk=funcionario.id disc=1 direccao=1 %}">
+                <img src="{{ funcionario.foto.url }}"  alt="Foto" class="bd-placeholder-img rounded-circle" width="130" height="130" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%"></rect></img>
+                <h6>{{ funcionario.nome_completo }}</h6>
+                <p>{{ funcionario.funcao }} de {{ funcionario.disciplina }}</p>
+              </a>
+            </div>
+            {% endif %}
+             {% endfor %}
+            </div><!-- /.row -->
+          </div>
+        {% elif professor %}
+          <h1 align="left"><i class="bi bi-people-fill"></i> Docentes</h1><hr>
+          <div class="row justify-content-center text-center">
+            {% for professor in professores %}
+            <div class="col-lg-3 card-lift">
+            <a class="" href="{% url 'detalhes_funcionario' pk=professor.id disc=1 direccao=0 %}">
+              <img src="{{ professor.foto.url }}"  alt="Foto" class="bd-placeholder-img rounded-circle" width="130" height="130" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%"></rect></img>
+              <h6>{{ professor.nome_completo }}</h6>
+              <p>{{ professor.funcao }} de {{ professor.disciplina }}</p>
+            </a>
+          </div>
+           {% endfor %}
+          </div>
+          {% else %}
+          <div style="background-color: red; font-size: large; height: 40px;" class="card  md-4 container">
+            <div class="card-body text-body">
+               <div class="text-white" style="margin-top: -20px;">
+                  <i class="bi bi-info-circle-fill fs-4 px-2"></i> Dados Indisponiveis no momemnto
+               </div>
+            </div>
+         </div>
+          {% endif %}
+        </div>
+    </div>
+</section>   
+{% endblock main %}

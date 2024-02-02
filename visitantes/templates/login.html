@@ -1,0 +1,61 @@
+<!-- Modal login -->
+<div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color:rgba(19, 26, 81, 0.945);">
+          <h1 class="modal-title fs-5 text-white" id="loginModalLabel">Dados do Utilizador</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h5> Acesso Restrito </h5>
+      <form action="{% url 'entrar' %}" method="POST" autocomplete="on">
+            {% csrf_token %}
+            <div class="input-group mb-2">
+              <span style="font-size:small" class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
+              <input type="text" class="form-control" name="utilizador" id="floatingInput" placeholder="Utilizador" aria-label="Username" required>
+            </div>
+            <div class="input-group mb-2">
+              <span style="font-size:small" class="input-group-text" id="basic-addon1"><i class="bi bi-lock-fill"></i></span>
+              <input type="password" class="form-control" name="senha" id="floatingPassword" placeholder="Palavra - Passe" required>
+            </div>
+            <div class="form-floating mb-3">
+             <a href="{% url 'password_reset' %}">Esqueci - me da Palavra-Passe</a>
+            </div>
+            <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn1">Entrar</button>
+        </div>
+      </form>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Button trigger modal -->
+<button type="button" id="modal-confirm" class="btn btn-primary" style="display: none;" data-bs-toggle="modal" data-bs-target="#confirmar">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmar" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: brown;">
+        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: rgb(255, 255, 255);">Eliminar registo</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        Tem certeza que deseja eliminar este registo ?<br>
+        <small style="color: brown;">Esta acção será inrreversível se confirmar</small>
+      </div>
+      <div class="modal-footer">
+        <form method="POST">
+          {% csrf_token %}
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <input type="submit" value="Confirmar" class="btn btn-outline-danger">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

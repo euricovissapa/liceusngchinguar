@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Sobre {{ funcionario.nome_completo }} | LSNG - Chinguar</title>
+{% endblock title%}
+
+{% block active5 %}
+ active
+{% endblock active5 %}
+{% block color5 %}
+text-white
+{% endblock color5 %}
+
+{% block active55 %}
+ active
+{% endblock active55 %}
+{% block color55 %}
+text-white
+{% endblock color55 %}
+
+{% block main %}
+<section class="container py-lg-5">
+  <div class="row justify-content-center">
+        <div class="d-flex flex-column gap-5" data-cue="zoomIn" data-group="page-title" data-delay="700" data-show="true" style="animation-name: zoomIn; animation-duration: 600ms; animation-timing-function: ease; animation-delay: 200ms; animation-direction: normal; animation-fill-mode: both;">
+          <div class="shadow p-3 mb-5 bg-body-white rounded">
+          <div class="container col-md-12 mx-auto row">
+            <div class="row">
+              <div class="col">
+                <h1> {{ funcionario.nome_completo }}</h1>
+                {% if funcionario.disciplina == '' %}
+                <h4> {{ funcionario.funcao }} </h4>
+                {% else %}
+                <h3> {{ funcionario.funcao }} de {{ funcionario.disciplina }} </h3>
+                {% endif %}
+              </div>
+              <div class="col py-3" align="right">
+                {% if direccao == 1 %}
+                <a class="btn btn1" href="{% url 'direccao' %}">Voltar</a>
+                {% else %}
+                <a class="btn btn1" href="{% url 'docentes' %}">Voltar</a>
+                {% endif %}
+              </div>
+                  
+            </div>
+            
+              <hr class="divider">
+              <div class="col-md-3">
+              <img src='{{ funcionario.foto.url }}' width="250" height="450">
+              </div>
+              <div class="col-md-8">
+                <div class="container text-center">
+                  <div class="row">
+                    <div class="col">
+                      <h6>Data de nascimento</h6>
+                      {{ funcionario.data_de_nascimento  }}
+                      <hr>
+                    </div>
+                    <div class="col">
+                      <h6>Nível Académico</h6>
+                      {{ funcionario.nivel_academico  }}
+                      <hr>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <h6>Naturalidade</h6>
+                      {{ funcionario.local_de_nascimento  }}, {{ funcionario.municipio  }}, {{ funcionario.provincia  }}
+                      <hr>
+                    </div>
+                    <div class="col">
+                      <h6>Especialidade</h6>
+                      {{ funcionario.especialidade  }}
+                      <hr>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <h6>Residência</h6>
+                      {{ funcionario.residencia  }}
+                      <hr>
+                    </div>
+                    <div class="col">
+                      <h6>Instituição de Formação</h6>
+                      {{ funcionario.instituicao  }}
+                      <hr>
+                    </div>
+                  </div>
+                  <h3>Dados Académicos</h3>
+                {% if funcionario.dados_academicos == 'nulo' %}
+                <div style="background-color: red; font-size: large; height: 40px;" class="card container">
+                  <div class="card-body text-body">
+                     <div class="text-white" style="margin-top: -20px;">
+                        <i class="bi bi-info-circle-fill fs-4 px-2"></i> Indisponiveil
+                     </div>
+                  </div>
+               </div>
+                {% else %}
+                  <pre>
+                  {{ funcionario.dados_academicos }}
+                </pre>
+                {% endif %}
+
+                <h3>Experiências Profissionais</h3>
+                {% if funcionario.dados_profissionais == 'nulo' %}
+                <div style="background-color: red; font-size: large; height: 40px;" class="card container">
+                  <div class="card-body text-body">
+                     <div class="text-white" style="margin-top: -20px;">
+                        <i class="bi bi-info-circle-fill fs-4 px-2"></i> Indisponiveil
+                     </div>
+                  </div>
+               </div>
+                {% else %}
+                  <pre>
+                  {{ funcionario.dados_profissionais }}
+                </pre>
+                {% endif %}
+                </div>
+                
+              </div>  
+        </div>
+     </div>
+    </div>
+</section>   
+{% endblock main %}
