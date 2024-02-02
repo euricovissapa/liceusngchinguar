@@ -1,0 +1,54 @@
+
+  <!-- Modal edit curso-->
+  <div class="modal fade" id="edit{{ curso.pk }}" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editCModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color:rgba(19, 26, 81, 0.945);">
+            <h1 class="modal-title fs-5 text-white" id="editCModal"><i class="bi bi-pencil-square"></i> Editar Curso</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        <div class="modal-body">
+            <form id="form" name="form" action="/AddCurso" method="POST">
+                {% csrf_token %}
+                <div class="row g-3">
+                    <div class="mb-3">
+                        <label for="curso" class="form-label">Curso
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <input type="text" name="curso" class="form-control" id="curso" value="{{ curso.nome_do_curso }}" required>
+                      </div>
+                    <div class="mb-3">
+                        <label for="perfil_de_entrada" class="form-label">Pefil de Entrada
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <textarea class="form-control" name="perfil_de_entrada" id="perfil_de_entrada" rows="3" required></textarea>
+                      </div>
+                      <div class="mb-3">
+                        <label for="perfil_de_saida" class="form-label">Perfil de Saída
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <textarea class="form-control" name="perfil_de_saida" id="perfil_de_saida" rows="3" required></textarea>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="duracao" class="form-label">Duração (Anos lectivos)
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <input type="text" class="form-control" name="duracao" id="duracao" required>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="total_disc" class="form-label">Total de Disciplinas do curso
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <input type="number" class="form-control" name="total_disc" id="total_disc" required>
+                      </div>
+                  </div>
+                  <br>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Registar</button>
+                  </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>

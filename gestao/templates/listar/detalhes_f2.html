@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Sobre {{ funcionario.nome_completo }} | LSNG - Chinguar</title>
+{% endblock title %}
+
+{% block main %}
+<section class="container py-lg-5" data-cue="fadeIn" data-show="true" style="animation-name: fadeIn; animation-duration: 600ms; animation-timing-function: ease; animation-delay: 0ms; animation-direction: normal; animation-fill-mode: both;">
+    <div class="row g-6">
+        <div class="col-sm-12 mb-3 mb-sm-0">
+            <div class="card">
+            <div class="col-md-2 p-2 mx-auto" align="center">
+            <img src="{{ funcionario.foto.url }}"  alt="Foto" class="bd-placeholder-img rounded-circle" width="120" height="120" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%"></rect></img>
+            </div>
+    
+                <h3 align="center">{{ funcionario.nome_completo }}</h3>
+                <small style="text-align:center;">{{ funcionario.utilizador }}</small>
+                <h6 align="center"> {{ funcionario.nAgente }}</h6>
+                <div class="row container">
+             <div class="col-md-3">
+                <div class="mb-3" align="center" style="margin-top:-15px;">
+                    <small>Bilhete de Identidade</small><br>
+                    <a class="btn btn1 btn-lg" target="_blank" href="{{ funcionario.arquivo.url }}" title="Ver Bilhete"><i class="bi bi-file-earmark-pdf-fill"></i></a>
+                </div>
+             </div>
+                <div class="table-responsive">
+                     <table class="table align-middle table-striped table-hover" style="text-align:center;margin-top:-10px;">
+                   <div class="col-md-3">
+                        <div class="mb-3">
+                            <th>Número Bilhete</th>
+                             <th>Data de Emissão</th>
+                            <th>Estado Cívil</th>
+                            <th>Data de Nascimento</th>
+                        </div>
+                    </div>
+    
+                    <tr>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <td>{{ funcionario.numero_do_bilhete }}</td>
+                            <td>{{ funcionario.data_de_emissao }}</td>
+                            <td>{{ funcionario.estado_civil }}</td>
+                            <td>{{ funcionario.data_de_nascimento }}</td>
+                        </div>
+                    </div>
+                    </tr>
+    
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <th>Local de Nascimento</th>
+                             <th>Município</th>
+                             <th>Província</th>
+                            <th>Contacto</th>
+                        </div>
+                    </div>
+    
+                    <tr>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <td>{{ funcionario.local_de_nascimento }}</td>
+                            <td>{{ funcionario.municipio }}</td>
+                            <td>{{ funcionario.provincia }}</td>
+                             <td>{{ funcionario.contacto }}</td>
+                        </div>
+                    </div>
+                    </tr>
+    
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                             <th>Data de Ingresso</th>
+                             <th>Categoria</th>
+                             <th>Função de exerce</th>
+                             <th>Tempo de Serviço</th>
+                        </div>
+                    </div>
+    
+                    <tr>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <td>{{ funcionario.data_de_ingresso }}</td>
+                            <td>{{ funcionario.categoria }}</td>
+                            <td>{{ funcionario.funcao }}</td>
+                            <td>
+                                {% if anos != 0 %} {{ anos }} anos {% elif meses != 0 %} {{ meses }} meses
+                                {% elif semanas != 0 %} {{ semanas }} semanas {% else %} {{ dias }} dias {% endif %}
+                            </td>
+                            </div>
+                        </div>
+                    </div>
+                    </tr>
+                </table>
+                <h3 align="center">Dados Académicos</h3>
+                <pre>
+                    {{ funcionario.dados_academicos}}
+                </pre>
+                <h3 align="center">Dados Profissionais</h3>
+                <pre>
+                    {{ funcionario.dados_profissionais}}
+                </pre>
+                </div>
+                </div>
+            </div><br>
+             <a class="btn btn1"  href="{% url 'edit_f' fun_id=funcionario.id %}">Alterar dados <i class="bi bi-person-fill-up"></i></a>
+       </div>
+    </div>
+</section>
+{% endblock main %}

@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+{% block title %}
+<title> {{ titulo }} | LSNG - Chinguar</title>
+{% endblock title %}
+
+{% block main %}
+<section class="container py-lg-5" data-cue="fadeIn" data-show="true" style="animation-name: fadeIn; animation-duration: 600ms; animation-timing-function: ease; animation-delay: 0ms; animation-direction: normal; animation-fill-mode: both;">
+<div class="row g-6">
+    {% if funcionarios %}
+<h1> Lista de Funcionários</h1>
+<div class="mx-2">
+    <a data-bs-toggle="modal" data-bs-target="#utilizadores" href="#" class="btn btn1 btn-sm" title="Adicionar funcionario">Adicionar</a>
+</div>
+<div class="table-responsive">
+    <table id="cursos" class="display table align-middle table-bordered text-center table-hover" style="width:100%">
+        <thead>
+            <tr>
+                <th>N/O</th>
+                <th>Nº de Agente</th>
+                <th>Nome Completo</th>
+                <th>D. Nascimento</th>
+                <th>B.I</th>
+                <th>Categoria</th>
+                <th>Função</th>
+                <th colspa="">Acções</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for funcionario in funcionarios %}
+            <tr>
+            <td>{{forloop.counter }}</td>
+            <td>{{funcionario.nAgente }}</td>
+            <td>{{funcionario.nome_completo}}</td>
+            <td>{{funcionario.data_de_nascimento}}</td>
+            <td>{{funcionario.numero_do_bilhete}}</td>
+            <td style="font-size: x-small;" >{{funcionario.categoria}}</td>
+            <td>{{funcionario.funcao}}</td>
+            <td>
+                <a {% if funcionario.utilizador %} href="{% url 'edit_f' fun_id=funcionario.id %}" {% else %} href="{% url 'edit_f2' fun_id=funcionario.id %}" {% endif %} class="btn btn1" title="Editar"><i class="bi bi-pencil-square"></i></a> 
+                <a href="{% url 'd_funcionario_admin' fun_id=funcionario.id %}" class="btn btn-info" title="Ver detalhes"><i class="bi bi-eye-fill"></i></a> 
+                <a href="{% url 'elim_f' fun_id=funcionario.id %}" id="btn_eliminar" class="btn btn-danger" title="Eliminar"><i class="bi bi-trash-fill"></i></a>
+            </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>    
+</div>
+{% elif cursos %}
+<h1> Lista de Cursos </h1>
+<div class="mx-2">
+    <a class="btn btn1 btn-sm" title="Adicionar curso" href="{% url 'AddCurso' %}">Adicionar</a>
+</div>
+<div class="table-responsive">
+    <table id="cursos" class="display table align-middle table-bordered text-center table-hover" style="width:100%">
+        <thead>
+            <tr>
+                <th>N/O</th>
+                <th>Nome do Curso</th>
+                <th>Perfil de Entrada</th>
+                <th>Perfil de Saida</th>
+                <th>Duração</th>
+                <th>Plano Curricular</th>
+                <th colspa="">Acções</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for curso in cursos %}
+            <tr>
+            <td>{{forloop.counter }}</td>
+            <td>{{curso.nome_do_curso}}</td>
+            <td>{{curso.perfil_de_entrada}}</td>
+            <td>{{curso.perfil_de_saida}}</td>
+            <td>{{curso.duracao}}</td>
+            <td>{{curso.total_disc}}</td>
+            <td>
+                <a href="{% url 'edit_curso' curso_id=curso.id %}" class="btn btn1 btn-actions" title="Editar"><i class="bi bi-pencil-square"></i></a> 
+                <a href="{% url 'elim_curso' curso_id=curso.id %}" id="btn_eliminar" class="btn btn-danger" title="Eliminar"><i class="bi bi-trash-fill"></i></a>
+            </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>    
+</div>
+
+{% elif quadro_de_honra %}
+<h1> Quadro de Honra </h1>
+<div class="mx-2">
+    <a class="btn btn1 btn-sm" title="Adicionar aluno destacado" href="{% url 'AddquadroHonra' %}">Adicionar</a>
+</div>
+<div class="table-responsive">
+    <table id="cursos" class="display table align-middle table-bordered text-center table-hover" style="width:100%">
+        <thead>
+            <tr>
+                <th>N/O</th>
+                <th>Nome do aluno</th>
+                <th>Classe/Curso</th>
+                <th>Ano Lectivo</th>
+                <th>Referência</th>
+                <th>Média</th>
+                <th colspa="">Acções</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for alunod in quadro_de_honra %}
+            <tr>
+            <td>{{forloop.counter }}</td>
+            <td>{{alunod.nome_do_aluno}}</td>
+            <td>{{alunod.classe}} - {{alunod.curso.sigla}}</td>
+            <td>{{alunod.ano_lectivo}}</td>
+            <td>{{alunod.referencia}}</td>
+            <td>{{alunod.media_obtida}}</td>
+            <td>
+                <a href="{% url 'edit_alunod' alunod_id=alunod.id %}" class="btn btn1 btn-actions" title="Editar"><i class="bi bi-pencil-square"></i></a> 
+                <a href="{% url 'elim_alunod' alunod_id=alunod.id %}" id="btn_eliminar" class="btn btn-danger" title="Eliminar"><i class="bi bi-trash-fill"></i></a>
+            </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>    
+</div>
+
+{% elif utilizadores %}
+<h1> Lista de Utilizadores </h1>
+<div class="mx-2">
+    <a href="{% url 'add_user' %}" class="btn btn1 btn-sm" title="Adicionar utilizador">Adicionar</a>
+</div>
+<div class="table-responsive">
+    <table id="cursos" class="display table align-middle table-bordered text-center table-hover" style="width:100%">
+        <thead>
+            <tr>
+                <th>N/O</th>
+                <th>Nome do Utilizador</th>
+                <th>Email</th>
+                <th colspa="">Acções</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in utilizadores %}
+            <tr>
+            <td>{{forloop.counter }}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>
+                <a href="{% url 'edit_user' user_id=user.id %}" class="btn btn1" title="Editar"><i class="bi bi-pencil-square"></i></a> 
+                <a href="{% url 'elim_user' user_id=user.id %}" class="btn btn-danger" title="Eliminar"><i class="bi bi-trash-fill"></i></a>
+            </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>    
+</div>
+{% elif noticias %}
+<h1> Lista de Notícias </h1>
+<div class="mx-2">
+    <a href="{% url 'AddNoticia' %}" class="btn btn1 btn-sm" title="Adicionar noticia">Adicionar</a>
+</div>
+<div class="table-responsive">
+    <table id="cursos" class="display table align-middle table-bordered text-center table-hover" style="width:100%">
+        <thead>
+            <tr>
+                <th>N/O</th>
+                <th>Titulo</th>
+                <th>Data da publicação</th>
+                <th>Registada por</th>
+                <th colspa="">Acções</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for noticia in noticias %}
+            <tr>
+            <td>{{forloop.counter }}</td>
+            <td>{{noticia.titulo }}</td>
+            <td>{{noticia.data }}</td>
+            <td>{{noticia.utilizador }}</td>
+            <td>
+                <a href="{% url 'edit_noticia' noti_id=noticia.id %}" class="btn btn1" title="Editar"><i class="bi bi-pencil-square"></i></a> 
+                <a href="{% url 'elim_noti' noti_id=noticia.id %}" id="btn-eliminar" class="btn btn-danger" title="Eliminar"><i class="bi bi-trash-fill"></i></a>
+            </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>    
+</div>
+{% elif galeria %}
+
+<h1> Galeria </h1>
+<div class="mx-2">
+    <a href="{% url 'Addfoto' %}" class="btn btn1 btn-sm" title="Adicionar foto">Adicionar</a>
+</div>
+<section class="container py-lg-6" data-cue="fadeIn" data-show="true" style="animation-name: fadeIn; animation-duration: 600ms; animation-timing-function: ease; animation-delay: 0ms; animation-direction: normal; animation-fill-mode: both;">
+    <div class="row g-6">
+        {% for foto in galeria %}
+        <div class="col col-lg-4 text-center" data-cue="zoomIn" data-duration="600">
+           <div class="card card-lift">
+              <div class="card-body">
+                 <div class="d-flex">
+                    <div class="py-5">
+                       <div class="bg-opacity-10">
+                        <img width="auto" height="150px" src="{{ foto.img.url}}" alt="">
+                        <h6>Painel: {{ foto.painel }} </h6>
+                        <a href="{% url 'edit_foto' foto_id=foto.id %}" class="btn btn1" title="Editar"><i class="bi bi-pencil-square"></i></a> 
+                        <a href="{% url 'elim_foto' foto_id=foto.id %}" class="btn btn-danger" title="Eliminar"><i class="bi bi-trash-fill"></i></a>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+        {% endfor %}
+   </div>
+ </section>
+{% elif cursos %}
+<h1> Lista de Cursos </h1>
+<div class="mx-2">
+    <a class="btn btn1 btn-sm" title="Adicionar curso" href="{% url 'AddCurso' %}">Adicionar</a>
+</div>
+<div class="table-responsive">
+    <table id="cursos" class="display table align-middle table-bordered text-center table-hover" style="width:100%">
+        <thead>
+            <tr>
+                <th>N/O</th>
+                <th>Nome do Curso</th>
+                <th>Perfil de Entrada</th>
+                <th>Perfil de Saida</th>
+                <th>Duração</th>
+                <th>Plano Curricular</th>
+                <th colspa="">Acções</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for curso in cursos %}
+            <tr>
+            <td>{{forloop.counter }}</td>
+            <td>{{curso.nome_do_curso}}</td>
+            <td>{{curso.perfil_de_entrada}}</td>
+            <td>{{curso.perfil_de_saida}}</td>
+            <td>{{curso.duracao}}</td>
+            <td>{{curso.total_disc}}</td>
+            <td>
+                <a href="{% url 'edit_curso' curso_id=curso.id %}" class="btn btn1 btn-actions" title="Editar"><i class="bi bi-pencil-square"></i></a> 
+                <a href="{% url 'elim_curso' curso_id=curso.id %}" id="btn_eliminar" class="btn btn-danger" title="Eliminar"><i class="bi bi-trash-fill"></i></a>
+            </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>    
+</div>
+
+{% elif quadro_de_honra %}
+<h1> Quadro de Honra </h1>
+<div class="mx-2">
+    <a class="btn btn1 btn-sm" title="Adicionar aluno destacado" href="{% url 'AddquadroHonra' %}">Adicionar</a>
+</div>
+<div class="table-responsive">
+    <table id="cursos" class="display table align-middle table-bordered text-center table-hover" style="width:100%">
+        <thead>
+            <tr>
+                <th>N/O</th>
+                <th>Nome do aluno</th>
+                <th>Classe/Curso</th>
+                <th>Ano Lectivo</th>
+                <th>Referência</th>
+                <th>Média</th>
+                <th colspa="">Acções</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for alunod in quadro_de_honra %}
+            <tr>
+            <td>{{forloop.counter }}</td>
+            <td>{{alunod.nome_do_aluno}}</td>
+            <td>{{alunod.classe}} - {{alunod.curso.sigla}}</td>
+            <td>{{alunod.ano_lectivo}}</td>
+            <td>{{alunod.referencia}}</td>
+            <td>{{alunod.media_obtida}}</td>
+            <td>
+                <a href="{% url 'edit_alunod' alunod_id=alunod.id %}" class="btn btn1 btn-actions" title="Editar"><i class="bi bi-pencil-square"></i></a> 
+                <a href="{% url 'elim_alunod' alunod_id=alunod.id %}" id="btn_eliminar" class="btn btn-danger" title="Eliminar"><i class="bi bi-trash-fill"></i></a>
+            </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>    
+        </div>
+ </section>
+{% else %}
+<div style="background-color: red; font-size: large;" class="card" align="center">
+    <div class="card-body text-body">
+       <div class="d-flex text-white text-center">
+          <i class="bi bi-info-circle-fill fs-4 px-2"></i> Nenhum registo encontrado no(a) {{ titulo }}
+       </div>
+    </div>
+ </div>
+{% endif %}
+</div>
+</section>
+{% include 'edit.html' %}
+{% endblock main %}
+{% block script %}
+        <script>
+        $(document).ready(function () {
+            $('#cursos').DataTable(
+                {
+                    responsive: true,
+                    "language":{
+                        "url":"//cdn.datatables.net/plug-ins/1.11.5/i18n/pt-PT.json"
+                    }
+                }
+            ); });
+        </script>
+    {% endblock script %}

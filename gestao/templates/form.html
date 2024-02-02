@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+<title>{{ titulo }} | LSNG - Chinguar</title> 
+{% endblock title %}
+
+{% block main %}
+<section class="container py-lg-5" data-cue="fadeIn" data-show="true" style="animation-name: fadeIn; animation-duration: 600ms; animation-timing-function: ease; animation-delay: 0ms; animation-direction: normal; animation-fill-mode: both;">
+ <div class="shadow p-5 mb-5 bg-body-white rounded">
+ <div class="row g-2">
+    <h1>{{ titulo }}</h1>
+    <div class="mx-2">
+        <a class="btn btn1 btn-sm" title="" href="/{{ link }}">Consultar</a>
+    </div>
+<form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <anything_else>
+    <div class="row" style="text-align:initial;">
+        {% if titulo == 'Registar Funcionário' or titulo == 'Actualizar funcionário' %}
+        <div class="col-md-4">
+            {{ form.foto|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.arquivo|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.nAgente|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.nome_completo|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.estado_civil|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.numero_do_bilhete|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.data_de_emissao|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.data_de_nascimento|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.local_de_nascimento|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.municipio|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.provincia|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.residencia|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.contacto|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.email|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.nivel_academico|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.especialidade|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.instituicao|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.data_de_ingresso|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.categoria|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.funcao|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.disciplina|as_crispy_field }}
+        </div>
+        <div class="col-md-6">
+            {{ form.dados_academicos|as_crispy_field }}
+        </div>
+        <div class="col-md-6">
+            {{ form.dados_profissionais|as_crispy_field }}
+        </div>
+        <div class="col-md-12">
+            {{ form.utilizador|as_crispy_field }}
+        </div>
+
+        {% elif titulo == 'Registar Funcionário 2' or titulo == 'Actualizar funcionário 2' %}
+        <div class="col-md-4">
+            {{ form.foto|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.arquivo|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.nAgente|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.nome_completo|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.estado_civil|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.numero_do_bilhete|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.data_de_emissao|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.data_de_nascimento|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.local_de_nascimento|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.municipio|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.provincia|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.residencia|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.contacto|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.email|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.nivel_academico|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.especialidade|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.instituicao|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.data_de_ingresso|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.categoria|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.funcao|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {{ form.disciplina|as_crispy_field }}
+        </div>
+        <div class="col-md-6">
+            {{ form.dados_academicos|as_crispy_field }}
+        </div>
+        <div class="col-md-6">
+            {{ form.dados_profissionais|as_crispy_field }}
+        </div>
+
+        {% elif titulo == 'Registar Utilizador' %}
+            <div class="col-md-4">
+            {{ form.username|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+            {{ form.first_name|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+            {{ form.last_name|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+            {{ form.email|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+            {{ form.password1|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+            {{ form.password2|as_crispy_field }}
+            </div>
+
+            {% elif titulo == 'Registar Curso' or titulo == 'Actualizar dados do Curso' %}
+            <div class="col-md-6">
+                {{ form.figura|as_crispy_field }}
+            </div>
+            <div class="col-md-6">
+                {{ form.nome_do_curso|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+                {{ form.sigla|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+                {{ form.duracao|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+                {{ form.total_disc|as_crispy_field }}
+            </div>
+            <div class="col-md-6">
+                {{ form.perfil_de_entrada|as_crispy_field }}
+            </div>
+            <div class="col-md-6">
+                {{ form.perfil_de_saida|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+                {{ form.classe_10|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+                {{ form.classe_11|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+                {{ form.classe_12|as_crispy_field }}
+            </div>
+            {% else %}
+            {{ form|crispy }}
+            {% endif %}
+    </div>
+    <button type="submit" class="btn btn1" style="width: 100%;"><i class="bi bi-check2-circle"></i> {{ btn }} </button>
+</form>
+</div>
+ </div>
+</section>
+{% endblock main %}
+
+{% block script %}
+<script>
+    $(document).ready(function(){
+        $('#id_nAgente').mask('00000000');
+        $('#id_numero_do_bilhete').mask('0000000AASS000')
+        $('#id_contacto').mask('(+244) 000 000 000');
+    });
+  </script>
+{% endblock script %}

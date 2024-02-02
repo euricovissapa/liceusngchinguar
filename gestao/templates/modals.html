@@ -1,0 +1,183 @@
+{% load static %}
+<!-- Modal -->
+<div class="modal fade" id="utilizadores" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Escolher tipo de previlégio</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ol class="list-group list-group-numbered">
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <a href="{% url 'add_f' %}" class="nav-link">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Funcionário (Utilizador)</div>
+              Crie funcionarios que poderão ter acesso no sistema.
+            </div>
+            <span class="badge bg-white rounded-pill">
+              <img width="50" height="50" src="https://img.icons8.com/color/96/admin-settings-male.png" alt="admin-settings-male"/>
+            </span>
+          </a>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <a href="{% url 'add_f2' %}" class="nav-link">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Funcionário</div>
+                Crie funcionarios que não poderão ter acesso no sistema.
+              </div>
+              <span class="badge bg-white rounded-pill">
+                <img width="50" height="50" src="{% static 'img/funcionario.png' %}" alt="admin-settings-male"/>
+              </span>
+          </a>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal add curso-->
+  <div class="modal fade" id="addCModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addCModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color:rgba(19, 26, 81, 0.945);">
+            <h1 class="modal-title fs-5 text-white" id="addCModalLabel"><i class="bi bi-database-fill"></i> Registar Curso</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        <div class="modal-body">
+            <form id="form" name="form" action="/AddCurso" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="figura" class="form-label">Figura
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <input type="file" name="figura" class="form-control" id="figura" required>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="curso" class="form-label">Curso
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <input type="text" name="curso" class="form-control" id="curso" required>
+                      </div>
+                    <div class="mb-3">
+                        <label for="perfil_de_entrada" class="form-label">Pefil de Entrada
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <textarea class="form-control" name="perfil_de_entrada" id="perfil_de_entrada" rows="3" required></textarea>
+                      </div>
+                      <div class="mb-3">
+                        <label for="perfil_de_saida" class="form-label">Perfil de Saída
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <textarea class="form-control" name="perfil_de_saida" id="perfil_de_saida" rows="3" required></textarea>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="duracao" class="form-label">Duração (Anos lectivos)
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <input type="text" class="form-control" name="duracao" id="duracao" required>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="total_disc" class="form-label">Total de Disciplinas do curso
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <input type="number" class="form-control" name="total_disc" id="total_disc" required>
+                      </div>
+                  </div>
+                  <br>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Registar</button>
+                  </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal edit curso-->
+  <div class="modal fade" id="editCModal{{ curso.id }}" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editCModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color:rgba(19, 26, 81, 0.945);">
+            <h1 class="modal-title fs-5 text-white" id="editCModal"><i class="bi bi-pincel"></i> Editar Curso</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        <div class="modal-body">
+            <form id="form" name="form" action="/AddCurso" method="POST">
+                {% csrf_token %}
+                <div class="row g-3">
+                    <div class="mb-3">
+                        <label for="curso" class="form-label">Curso
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <input type="text" name="curso" class="form-control" id="curso" required>
+                      </div>
+                    <div class="mb-3">
+                        <label for="perfil_de_entrada" class="form-label">Pefil de Entrada
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <textarea class="form-control" name="perfil_de_entrada" id="perfil_de_entrada" rows="3" required></textarea>
+                      </div>
+                      <div class="mb-3">
+                        <label for="perfil_de_saida" class="form-label">Perfil de Saída
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <textarea class="form-control" name="perfil_de_saida" id="perfil_de_saida" rows="3" required></textarea>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="duracao" class="form-label">Duração (Anos lectivos)
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <input type="text" class="form-control" name="duracao" id="duracao" required>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="total_disc" class="form-label">Total de Disciplinas do curso
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <input type="number" class="form-control" name="total_disc" id="total_disc" required>
+                      </div>
+                  </div>
+                  <br>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Registar</button>
+                  </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Button trigger modal -->
+  <button type="button" id="modal-confirm" class="btn btn-primary" style="display: none;" data-bs-toggle="modal" data-bs-target="#confirmar">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="confirmar" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: brown;">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: rgb(255, 255, 255);">Eliminar registo</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          Tem certeza que deseja eliminar este registo ?<br>
+          <small style="color: brown;">Esta acção será inrreversível se confirmar</small>
+        </div>
+        <div class="modal-footer">
+          <form method="POST">
+            {% csrf_token %}
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <input type="submit" value="Confirmar" class="btn btn-outline-danger">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
